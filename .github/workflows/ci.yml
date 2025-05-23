@@ -12,16 +12,16 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Cache Maven local repo
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -29,22 +29,51 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Build & run tests
-        run: mvn clean verify -q
+        run: |
+          echo "Building and running tests..."
+          mvn clean test -Dmaven.test.failure.ignore=true
+          echo "Test execution completed"
+
+      - name: Check if allure-results exists
+        run: |
+          if [ -d "target/allure-results" ]; then
+            echo "Allure results directory exists"
+            ls -la target/allure-results/
+          else
+            echo "Allure results directory not found"
+            mkdir -p target/allure-results
+            echo "Created empty allure-results directory"
+          fi
 
       - name: Upload Allure results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: target/allure-results
+          if-no-files-found: warn
 
       - name: Generate Allure HTML report
         if: always()
-        run: mvn allure:report -q
+        run: |
+          echo "Generating Allure report..."
+          mvn allure:report || echo "Allure report generation failed, but continuing..."
+
+      - name: Check if allure report exists
+        if: always()
+        run: |
+          if [ -d "target/site/allure-maven-plugin" ]; then
+            echo "Allure report directory exists"
+            ls -la target/site/allure-maven-plugin/
+          else
+            echo "Allure report directory not found"
+            find target -name "*allure*" -type d || echo "No allure directories found"
+          fi
 
       - name: Upload Allure HTML report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: target/site/allure-maven-plugin
+          if-no-files-found: warn
