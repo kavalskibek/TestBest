@@ -1,0 +1,29 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "Test Suite",
+    "children" : [ {
+      "name" : "Login Tests",
+      "children" : [ {
+        "name" : "org.example.tests.LoginTest",
+        "children" : [ {
+          "name" : "testLogin",
+          "uid" : "74e3b7781dd62d3",
+          "parentUid" : "e27c568d2da26c6fb06e81b9e85e1f62",
+          "status" : "passed",
+          "time" : {
+            "start" : 1747980798434,
+            "stop" : 1747980799200,
+            "duration" : 766
+          },
+          "flaky" : false,
+          "parameters" : [ "kaller", "911faraoN!" ]
+        } ],
+        "uid" : "e27c568d2da26c6fb06e81b9e85e1f62"
+      } ],
+      "uid" : "ec43ddcc3183c8d98b81f0e88b37a771"
+    } ],
+    "uid" : "70f4612f25dd624e3fa5910864552138"
+  } ]
+}

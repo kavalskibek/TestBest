@@ -1,0 +1,1 @@
+﻿See latest Allure report

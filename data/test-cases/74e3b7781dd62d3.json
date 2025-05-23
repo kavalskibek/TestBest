@@ -1,0 +1,99 @@
+{
+  "uid" : "74e3b7781dd62d3",
+  "name" : "testLogin",
+  "fullName" : "org.example.tests.LoginTest.testLogin",
+  "historyId" : "6da0c617c3cde251a9c9483dea14c6d0",
+  "time" : {
+    "start" : 1747980798434,
+    "stop" : 1747980799200,
+    "duration" : 766
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "setUp",
+    "time" : {
+      "start" : 1747980796569,
+      "stop" : 1747980798323,
+      "duration" : 1754
+    },
+    "description" : "",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "tearDown",
+    "time" : {
+      "start" : 1747980799212,
+      "stop" : 1747980799405,
+      "duration" : 193
+    },
+    "description" : "",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "org.example.tests.LoginTest"
+  }, {
+    "name" : "testClass",
+    "value" : "org.example.tests.LoginTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "testLogin"
+  }, {
+    "name" : "parentSuite",
+    "value" : "Test Suite"
+  }, {
+    "name" : "suite",
+    "value" : "Login Tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "org.example.tests.LoginTest"
+  }, {
+    "name" : "host",
+    "value" : "Oroz"
+  }, {
+    "name" : "thread",
+    "value" : "17616@Oroz.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "testng"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "arg0",
+    "value" : "kaller"
+  }, {
+    "name" : "arg1",
+    "value" : "911faraoN!"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "74e3b7781dd62d3.json",
+  "parameterValues" : [ "kaller", "911faraoN!" ]
+}

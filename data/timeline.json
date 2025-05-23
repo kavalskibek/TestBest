@@ -1,0 +1,25 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "Oroz",
+    "children" : [ {
+      "name" : "17616@Oroz.main(1)",
+      "children" : [ {
+        "name" : "testLogin",
+        "uid" : "74e3b7781dd62d3",
+        "parentUid" : "b98b57938d60b47b89c41ddfe527b927",
+        "status" : "passed",
+        "time" : {
+          "start" : 1747980798434,
+          "stop" : 1747980799200,
+          "duration" : 766
+        },
+        "flaky" : false,
+        "parameters" : [ "kaller", "911faraoN!" ]
+      } ],
+      "uid" : "b98b57938d60b47b89c41ddfe527b927"
+    } ],
+    "uid" : "d8191dcc4700f24a7c768816e38b3005"
+  } ]
+}
