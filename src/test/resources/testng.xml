@@ -9,5 +9,7 @@
         <classes>
             <class name="org.example.tests.LoginTest"/>
         </classes>
+
     </test>
+
 </suite>
