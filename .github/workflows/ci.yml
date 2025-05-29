@@ -6,17 +6,16 @@ on:
   pull_request:
     branches: [ main ]
 
-# Grant rights for Pages deployment
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read      # needed for checkout
+  pages: write        # needed to publish to gh-pages
+  id-token: write     # needed by deploy-pages
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Java 17
@@ -25,7 +24,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Cache Maven repository
+      - name: Cache Maven repo
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
