@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main ]
 
+# Grant the Pages jobs the rights they need
+permissions:
+  contents: read           # for checkout
+  pages: write             # to publish to gh-pages
+  id-token: write          # for deploy action auth
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,50 +36,35 @@ jobs:
 
       - name: Build & run tests
         run: |
-          echo "Building and running tests..."
           mvn clean test -Dmaven.test.failure.ignore=true
-          echo "Test execution completed"
 
-      - name: Check if allure-results exists
-        run: |
-          if [ -d "target/allure-results" ]; then
-            echo "Allure results directory exists"
-            ls -la target/allure-results/
-          else
-            echo "Allure results directory not found"
-            mkdir -p target/allure-results
-            echo "Created empty allure-results directory"
-          fi
+      - name: Generate Allure HTML report
+        run: mvn allure:report
 
+      # Upload as artifacts if you want to download manually
       - name: Upload Allure results
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: target/allure-results
-          if-no-files-found: warn
-
-      - name: Generate Allure HTML report
-        if: always()
-        run: |
-          echo "Generating Allure report..."
-          mvn allure:report || echo "Allure report generation failed, but continuing..."
-
-      - name: Check if allure report exists
-        if: always()
-        run: |
-          if [ -d "target/site/allure-maven-plugin" ]; then
-            echo "Allure report directory exists"
-            ls -la target/site/allure-maven-plugin/
-          else
-            echo "Allure report directory not found"
-            find target -name "*allure*" -type d || echo "No allure directories found"
-          fi
 
       - name: Upload Allure HTML report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: target/site/allure-maven-plugin
-          if-no-files-found: warn
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # Publish the folder as a Pages artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: target/site/allure-maven-plugin
+
+      # Deploy that artifact to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+
