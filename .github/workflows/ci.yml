@@ -7,9 +7,9 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: read      # needed for checkout
-  pages: write        # needed to publish to gh-pages
-  id-token: write     # needed by deploy-pages
+  contents: read       # needed for checkout
+  pages: write         # needed to publish to gh-pages
+  id-token: write      # needed by deploy-pages
 
 jobs:
   build:
@@ -24,14 +24,15 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Cache Maven repo
+      - name: Cache Maven repository
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2-
+          restore-keys: |
+            ${{ runner.os }}-m2-
 
-      - name: Run tests and generate Allure report
+      - name: Run tests & generate Allure report
         run: |
           mvn clean test
           mvn allure:report
