@@ -5,11 +5,14 @@
         <listener class-name="org.example.framework.TestListener"/>
     </listeners>
 
-    <test name="Login Tests">
-        <classes>
-            <class name="org.example.tests.LoginTest"/>
-        </classes>
+    <test name="All Tests">
+<!--        <classes>-->
+<!--            <class name="org.example.tests.TokenTest"/>-->
+<!--        </classes>-->
 
+        <packages>
+            <package name="org.example.tests"/>
+        </packages>
     </test>
 
 </suite>
