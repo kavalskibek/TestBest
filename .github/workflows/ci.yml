@@ -43,13 +43,14 @@ jobs:
 
       # Upload as artifacts if you want to download manually
       - name: Upload Allure results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: allure-results
           path: target/allure-results
 
       - name: Upload Allure HTML report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
+
         with:
           name: allure-report
           path: target/site/allure-maven-plugin
